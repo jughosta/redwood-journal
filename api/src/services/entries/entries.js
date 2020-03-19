@@ -2,6 +2,14 @@ export const entries = () => {
   return db.entry.findMany()
 }
 
+export const dayEntries = ({ day }) => {
+  return db.entry.findMany({
+    where: {
+      day,
+    },
+  })
+}
+
 export const entry = ({ id }) => {
   return db.entry.findOne({
     where: { id },

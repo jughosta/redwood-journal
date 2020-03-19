@@ -11,7 +11,9 @@ const HomePage = () => {
           <Link to={routes.about()}>Go to About</Link>
         </li>
         <li>
-          <Link to={routes.dayEntries()}>Go to Day Entries</Link>
+          <Link to={routes.dayEntries({ day: '20200319' })}>
+            Go to Day Entries
+          </Link>
         </li>
       </ul>
     </MainLayout>

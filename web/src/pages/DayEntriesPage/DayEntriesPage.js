@@ -1,13 +1,13 @@
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import DayEntriesCell from 'src/components/DayEntriesCell/DayEntriesCell'
 
-const DayEntryPage = () => {
+const DayEntriesPage = ({ day }) => {
   return (
     <MainLayout>
-      <h1>DayEntryPage</h1>
-      <DayEntriesCell />
+      <h1>DayEntriesPage</h1>
+      <DayEntriesCell day={day} />
     </MainLayout>
   )
 }
 
-export default DayEntryPage
+export default DayEntriesPage

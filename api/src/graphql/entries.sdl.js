@@ -14,6 +14,7 @@ export const schema = gql`
 
   type Query {
     entries: [Entry!]!
+    dayEntries(day: String!): [Entry!]!
     entry(id: String!): Entry
   }
 

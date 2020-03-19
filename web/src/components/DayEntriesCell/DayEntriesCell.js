@@ -1,6 +1,6 @@
 export const QUERY = gql`
-  query {
-    entries {
+  query getDayEntries($day: String!) {
+    entries: dayEntries(day: $day) {
       id
       question
       answer
