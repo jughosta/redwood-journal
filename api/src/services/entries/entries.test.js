@@ -1,4 +1,5 @@
-import { entries } from './entries'
+// import { entries } from './entries'
+// TODO: write tests
 
 describe('entries', () => {
   it('returns true', () => {
