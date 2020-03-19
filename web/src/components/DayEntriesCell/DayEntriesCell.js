@@ -1,4 +1,10 @@
-import { QUERY as QUERYTs, Empty as EmptyTs, Failure as FailureTs, Loading as LoadingTs, Success as SuccessTs } from './DayEntries'
+import {
+  QUERY as QUERYTs,
+  Empty as EmptyTs,
+  Failure as FailureTs,
+  Loading as LoadingTs,
+  Success as SuccessTs,
+} from './DayEntries'
 
 // TODO: refactor after redwood update
 
