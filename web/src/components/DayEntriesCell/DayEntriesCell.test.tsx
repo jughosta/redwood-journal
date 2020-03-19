@@ -1,6 +1,8 @@
-import { render, cleanup } from '@testing-library/react'
+import * as React from 'react'
+import { cleanup, render } from '@testing-library/react'
+import { DayTime } from 'src/types'
 
-import { Loading, Empty, Failure, Success } from './DayEntriesCell'
+import { Empty, Failure, Loading, Success } from './DayEntriesCell'
 
 describe('DayEntriesCell', () => {
   afterEach(() => {
@@ -29,7 +31,7 @@ describe('DayEntriesCell', () => {
             id: 'entry-1',
             question: 'How are you?',
             answer: 'Fine',
-            dayTime: 'MORNING',
+            dayTime: DayTime.MORNING,
             day: '2020-03-19',
           },
         ],

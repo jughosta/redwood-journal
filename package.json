@@ -6,6 +6,9 @@
       "web"
     ]
   },
+  "scripts": {
+    "test": "yarn workspace web jest"
+  },
   "devDependencies": {
     "@redwoodjs/core": "^0.2.5"
   },

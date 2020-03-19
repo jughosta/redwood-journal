@@ -12,5 +12,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "ts-jest": "^25.2.1"
   }
 }
