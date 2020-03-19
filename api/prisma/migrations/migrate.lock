@@ -8,3 +8,5 @@
 20200318164046-revert-some-changes
 20200318171606-exclude-dates-for-now
 20200319101806-simplify-data-model
+20200319105009-add-day-column
+20200319105449-add-index
