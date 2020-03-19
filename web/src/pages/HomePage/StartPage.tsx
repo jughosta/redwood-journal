@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import { getDayCode } from 'src/utils/date'

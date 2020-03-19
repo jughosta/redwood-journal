@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import gql from 'graphql-tag'
 import Entry from 'src/components/Entry/Entry'
 import { GraphQLError, Entry as EntryType } from 'src/types'

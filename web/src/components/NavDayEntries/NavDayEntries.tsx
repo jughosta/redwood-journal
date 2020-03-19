@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { Link, routes, useParams } from '@redwoodjs/router'
 import {
   formatDate,

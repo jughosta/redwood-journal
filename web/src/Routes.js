@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { Router, Route } from '@redwoodjs/router'
 import DayEntriesPage from 'src/pages/DayEntriesPage/DayEntriesPage'
 import StartPage from 'src/pages/HomePage/StartPage'

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 export const NotFound404Page = () => (
   <section className="p-16 text-center">

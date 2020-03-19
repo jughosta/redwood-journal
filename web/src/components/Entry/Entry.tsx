@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { Entry as EntryType } from 'src/types'
 
 type Props = {
