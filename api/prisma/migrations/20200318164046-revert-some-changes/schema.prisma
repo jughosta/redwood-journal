@@ -1,6 +1,6 @@
 datasource DS {
   provider = "sqlite"
-  url = env("DATABASE_URL")
+  url = "***"
 }
 
 generator photonjs {
@@ -17,8 +17,14 @@ model Entry {
   id          String @id  @default(cuid())
   question    String
   answer      String
-  dayTime     DayTime
-  day         String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
 
-  @@index([day])
+model Chapter {
+  id          String @id  @default(cuid())
+  dayTime     DayTime
+  entries     Entry[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }

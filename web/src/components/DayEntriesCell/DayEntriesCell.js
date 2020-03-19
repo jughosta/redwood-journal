@@ -1,0 +1,20 @@
+export const QUERY = gql`
+  query getDayEntries($day: String!) {
+    entries: dayEntries(day: $day) {
+      id
+      question
+      answer
+      dayTime
+    }
+  }
+`
+
+export const Loading = () => <div>Loading...</div>
+
+export const Empty = () => <div>Empty</div>
+
+export const Failure = ({ error }) => <div>Error: {error.message}</div>
+
+export const Success = ({ entries }) => {
+  return JSON.stringify(entries)
+}

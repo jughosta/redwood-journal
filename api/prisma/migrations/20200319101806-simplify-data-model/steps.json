@@ -1,0 +1,41 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "DeleteModel",
+      "model": "Chapter"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Entry",
+      "field": "dayTime",
+      "type": "DayTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Entry",
+      "field": "chapterId"
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Entry",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[chapterId]"
+            },
+            {
+              "name": "name",
+              "value": "\"ifk_entry_chapter_id\""
+            }
+          ]
+        },
+        "directive": "index"
+      }
+    }
+  ]
+}

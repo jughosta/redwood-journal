@@ -1,0 +1,12 @@
+# IF THERE'S A GIT CONFLICT IN THIS FILE, DON'T SOLVE IT MANUALLY!
+# INSTEAD EXECUTE `prisma2 migrate fix`
+# Prisma Migrate lockfile v1
+# Read more about conflict resolution here: TODO
+
+20200318154345-initial-model
+20200318163555-set-relation
+20200318164046-revert-some-changes
+20200318171606-exclude-dates-for-now
+20200319101806-simplify-data-model
+20200319105009-add-day-column
+20200319105449-add-index

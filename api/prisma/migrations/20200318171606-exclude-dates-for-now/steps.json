@@ -1,0 +1,52 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Entry",
+      "field": "chapterId",
+      "type": "Chapter",
+      "arity": "Required"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Entry",
+      "field": "createdAt"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Entry",
+      "field": "updatedAt"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Entry",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[chapterId]"
+            },
+            {
+              "name": "name",
+              "value": "\"ifk_entry_chapter_id\""
+            }
+          ]
+        },
+        "directive": "index"
+      }
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Chapter",
+      "field": "createdAt"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Chapter",
+      "field": "updatedAt"
+    }
+  ]
+}
