@@ -29,4 +29,4 @@ jobs:
     - name: lint
       run: yarn rw lint
     - name: test
-        run: yarn test && yarn rw test api
+      run: yarn test && yarn rw test api
