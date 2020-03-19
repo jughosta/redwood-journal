@@ -23,7 +23,17 @@ describe('DayEntriesCell', () => {
   })
   it('Success renders successfully', () => {
     expect(() => {
-      Success({ entries: [] })
+      Success({
+        entries: [
+          {
+            id: 'entry-1',
+            question: 'How are you?',
+            answer: 'Fine',
+            dayTime: 'MORNING',
+            day: '2020-03-19',
+          },
+        ],
+      })
     }).not.toThrow()
   })
 })
