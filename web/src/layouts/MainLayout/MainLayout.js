@@ -1,13 +1,11 @@
-import { Link, routes } from '@redwoodjs/router'
+import Header from 'src/components/Header/Header'
 
 const MainLayout = ({ children }) => {
   return (
-    <>
-      <header>
-        <Link to={routes.home()}>Redwood Journal</Link>
-      </header>
+    <div className="max-w-screen-md mx-auto">
+      <Header />
       <main>{children}</main>
-    </>
+    </div>
   )
 }
 
