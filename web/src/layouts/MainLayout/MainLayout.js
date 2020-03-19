@@ -1,10 +1,11 @@
 import Header from 'src/components/Header/Header'
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, nav }) => {
   return (
-    <div className="max-w-screen-md mx-auto">
+    <div className="max-w-3xl mx-auto">
       <Header />
-      <main>{children}</main>
+      {nav}
+      <main className="mt-6">{children}</main>
     </div>
   )
 }

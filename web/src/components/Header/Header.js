@@ -3,11 +3,13 @@ import { Link, routes } from '@redwoodjs/router'
 import { getDayCode } from 'src/utils/date'
 
 const Header = () => {
+  const now = new Date()
+
   return (
-    <header className="mt-8 mb-4 text-center">
+    <header className="mt-8 text-center">
       <Link
-        to={routes.dayEntries({ day: getDayCode(Date.now()) })}
-        className="font-semibold"
+        to={routes.dayEntries({ day: getDayCode(now) })}
+        className="font-semibold text-blue-700"
       >
         Redwood Journal
       </Link>
