@@ -8,6 +8,7 @@
   "dependencies": {
     "@redwoodjs/router": "^0.2.5",
     "@redwoodjs/web": "^0.2.5",
+    "crypto-js": "^4.0.0",
     "date-fns": "^2.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
