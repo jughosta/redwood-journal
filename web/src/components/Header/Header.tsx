@@ -6,7 +6,7 @@ const Header = (): JSX.Element => {
   const now = new Date()
 
   return (
-    <header className="mt-8 text-center">
+    <header className="text-center">
       <Link
         to={routes.dayEntries({ day: getDayCode(now) })}
         className="font-semibold text-blue-700"

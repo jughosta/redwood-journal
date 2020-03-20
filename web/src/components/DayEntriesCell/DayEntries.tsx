@@ -1,7 +1,10 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import Entry from 'src/components/Entry/Entry'
-import { GraphQLError, Entry as EntryType } from 'src/types'
+import { useParams } from '@redwoodjs/router'
+import { groupEntriesByDayTime } from 'src/utils/questions'
+import { getDayCode } from 'src/utils/date'
+import EntryList from 'src/components/EntryList/EntryList'
+import { DayTime, Entry as EntryType } from 'src/types'
 
 export const QUERY = gql`
   query getDayEntries($day: String!) {
@@ -10,6 +13,7 @@ export const QUERY = gql`
       question
       answer
       dayTime
+      day
     }
   }
 `
@@ -18,12 +22,8 @@ export const Loading = (): JSX.Element => (
   <div className="text-gray-500 text-center">Loading...</div>
 )
 
-export const Empty = (): JSX.Element => (
-  <div className="text-gray-500 text-center">¯\_(ツ)_/¯</div>
-)
-
-export const Failure = ({ error }: { error: GraphQLError }): JSX.Element => (
-  <div>Error: {error.message}</div>
+export const Failure = (): JSX.Element => (
+  <div className="text-sm text-red-500">Something went wrong</div>
 )
 
 type Props = {
@@ -31,27 +31,26 @@ type Props = {
 }
 
 export const Success = ({ entries }: Props): JSX.Element => {
-  const morningEntries = entries.filter((e) => e.dayTime === 'MORNING')
-  const eveningEntries = entries.filter((e) => e.dayTime === 'EVENING')
+  const { day } = useParams()
+  const readOnly = getDayCode(new Date()) !== day // not today
+  const map = groupEntriesByDayTime(entries, !readOnly, day)
+
+  if (entries.length === 0 && readOnly) {
+    return <div className="text-gray-500 text-center">¯\_(ツ)_/¯</div>
+  }
 
   return (
-    <section>
-      <h2 className="mb-2 text-gray-500">Morning</h2>
-      <ul>
-        {morningEntries.map((entry) => (
-          <li key={entry.id}>
-            <Entry entry={entry} />
-          </li>
-        ))}
-      </ul>
-      <h2 className="mt-3 mb-2 text-gray-500">Evening</h2>
-      <ul>
-        {eveningEntries.map((entry) => (
-          <li key={entry.id}>
-            <Entry entry={entry} />
-          </li>
-        ))}
-      </ul>
-    </section>
+    <>
+      <EntryList
+        readOnly={readOnly}
+        heading="Morning"
+        entries={map[DayTime.MORNING]}
+      />
+      <EntryList
+        readOnly={readOnly}
+        heading="Evening"
+        entries={map[DayTime.EVENING]}
+      />
+    </>
   )
 }
