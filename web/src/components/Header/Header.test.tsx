@@ -1,14 +1,15 @@
+import React from 'react'
 import { render, cleanup } from '@testing-library/react'
 
-import HomePage from './HomePage'
+import Header from './Header'
 
-describe('HomePage', () => {
+describe('Header', () => {
   afterEach(() => {
     cleanup()
   })
   it('renders successfully', () => {
     expect(() => {
-      render(<HomePage />)
+      render(<Header />)
     }).not.toThrow()
   })
 })

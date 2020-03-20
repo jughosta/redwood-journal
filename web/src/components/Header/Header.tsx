@@ -1,8 +1,8 @@
+import React from 'react'
 import { Link, routes } from '@redwoodjs/router'
-
 import { getDayCode } from 'src/utils/date'
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const now = new Date()
 
   return (

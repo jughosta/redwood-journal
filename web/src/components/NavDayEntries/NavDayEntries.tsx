@@ -1,6 +1,5 @@
-import { Link, routes } from '@redwoodjs/router'
-import { useParams } from '@redwoodjs/router'
-
+import React from 'react'
+import { Link, routes, useParams } from '@redwoodjs/router'
 import {
   formatDate,
   getDayCode,
@@ -9,7 +8,7 @@ import {
   hasNextDate,
 } from 'src/utils/date'
 
-const NavDayEntries = () => {
+const NavDayEntries = (): JSX.Element => {
   const { day } = useParams()
   const date = new Date(day)
 

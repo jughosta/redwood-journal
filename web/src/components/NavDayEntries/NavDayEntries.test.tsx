@@ -1,14 +1,15 @@
+import React from 'react'
 import { render, cleanup } from '@testing-library/react'
 
-import Header from './Header'
+import NavDayEntries from './NavDayEntries'
 
-describe('Header', () => {
+describe('NavDayEntries', () => {
   afterEach(() => {
     cleanup()
   })
   it('renders successfully', () => {
     expect(() => {
-      render(<Header />)
+      render(<NavDayEntries />)
     }).not.toThrow()
   })
 })

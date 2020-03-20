@@ -6,6 +6,10 @@
       "web"
     ]
   },
+  "scripts": {
+    "lint": "eslint web/src api/src",
+    "test": "yarn workspace web jest && yarn rw test api"
+  },
   "devDependencies": {
     "@redwoodjs/core": "^0.2.5"
   },

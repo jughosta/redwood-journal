@@ -1,14 +1,15 @@
+import React from 'react'
 import { render, cleanup } from '@testing-library/react'
 
-import NavDayEntries from './NavDayEntries'
+import FatalErrorPage from './FatalErrorPage'
 
-describe('NavDayEntries', () => {
+describe('FatalErrorPage', () => {
   afterEach(() => {
     cleanup()
   })
   it('renders successfully', () => {
     expect(() => {
-      render(<NavDayEntries />)
+      render(<FatalErrorPage />)
     }).not.toThrow()
   })
 })

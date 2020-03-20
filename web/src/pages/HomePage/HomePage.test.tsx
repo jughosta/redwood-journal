@@ -1,14 +1,15 @@
+import React from 'react'
 import { render, cleanup } from '@testing-library/react'
 
-import DayEntriesPage from './DayEntriesPage'
+import StartPage from './StartPage'
 
-describe('DayEntriesPage', () => {
+describe('HomePage', () => {
   afterEach(() => {
     cleanup()
   })
   it('renders successfully', () => {
     expect(() => {
-      render(<DayEntriesPage />)
+      render(<StartPage />)
     }).not.toThrow()
   })
 })
