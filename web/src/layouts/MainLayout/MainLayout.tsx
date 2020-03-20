@@ -8,7 +8,7 @@ interface Props {
 
 const MainLayout = ({ children, nav }: Props): JSX.Element => {
   return (
-    <div className="max-w-3xl mx-auto px-4">
+    <div className="max-w-3xl mx-auto">
       <Header />
       {nav}
       <main className="mt-6">{children}</main>

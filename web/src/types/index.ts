@@ -9,6 +9,12 @@ export type Entry = {
   answer: string
   dayTime: DayTime
   day: string
+  isDraft?: boolean
+}
+
+export type EntriesMapByDayTime = {
+  [DayTime.MORNING]: Entry[]
+  [DayTime.EVENING]: Entry[]
 }
 
 export type GraphQLError = {
