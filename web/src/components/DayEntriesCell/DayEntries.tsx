@@ -1,7 +1,8 @@
 import React from 'react'
 import gql from 'graphql-tag'
 import Entry from 'src/components/Entry/Entry'
-import { GraphQLError, Entry as EntryType } from 'src/types'
+import EntryForm from 'src/components/EntryForm/EntryForm'
+import { DayTime, Entry as EntryType, GraphQLError } from 'src/types'
 
 export const QUERY = gql`
   query getDayEntries($day: String!) {
@@ -10,6 +11,7 @@ export const QUERY = gql`
       question
       answer
       dayTime
+      day
     }
   }
 `
@@ -37,15 +39,20 @@ export const Success = ({ entries }: Props): JSX.Element => {
   return (
     <section>
       <h2 className="mb-2 text-gray-500">Morning</h2>
-      <ul>
+      <ul className="rounded overflow-hidden">
         {morningEntries.map((entry) => (
           <li key={entry.id}>
-            <Entry entry={entry} />
+            <EntryForm
+              entry={entry}
+              question={entry.question}
+              dayTime={DayTime.MORNING}
+              day={entry.day}
+            />
           </li>
         ))}
       </ul>
       <h2 className="mt-3 mb-2 text-gray-500">Evening</h2>
-      <ul>
+      <ul className="rounded overflow-hidden">
         {eveningEntries.map((entry) => (
           <li key={entry.id}>
             <Entry entry={entry} />
