@@ -3,9 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.9.2",
-    "@redwoodjs/api": "^0.2.5",
-    "core-js-pure": "^3.0.0",
-    "regenerator-runtime": "^0.13.5"
+    "@redwoodjs/api": "^0.2.5"
   }
 }
