@@ -13,7 +13,7 @@ describe('Entry', () => {
       render(
         <EntryList
           readOnly
-          heading="Morning"
+          dayTime={DayTime.MORNING}
           entries={[
             {
               id: 'entry-1',
@@ -41,7 +41,7 @@ describe('Entry', () => {
       render(
         <EntryList
           readOnly={false}
-          heading="Morning"
+          dayTime={DayTime.MORNING}
           entries={[
             {
               id: 'entry-1',

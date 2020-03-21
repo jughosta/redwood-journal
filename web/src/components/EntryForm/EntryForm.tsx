@@ -41,7 +41,7 @@ const EntryForm = ({ entry: initialEntry, autoFocus }: Props): JSX.Element => {
   const [update, { loading: updateLoading, error: updateError }] = useMutation(
     UPDATE_ENTRY,
     {
-      onCompleted: (data: Entry) => setEntry(data),
+      onCompleted: (data: { updateEntry: Entry }) => setEntry(data.updateEntry),
     }
   )
 

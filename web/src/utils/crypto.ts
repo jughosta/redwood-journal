@@ -11,14 +11,14 @@ export const setProvidedSecret = (providedSecret: string): void => {
   secret = providedSecret
 }
 
-export const encryptMessage = (message: string): string => {
+export const encryptMessage = (message = ''): string => {
   if (!secret) {
     throw Error('Encryption is not possible!')
   }
   return CryptoAES.encrypt(message, secret).toString()
 }
 
-export const decryptMessage = (message: string): string => {
+export const decryptMessage = (message = ''): string => {
   if (!secret) {
     return INCORRECT_PASSPHRASE
   }
