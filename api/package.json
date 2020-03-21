@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/runtime-corejs3": "^7.9.2",
-    "@redwoodjs/api": "^0.2.5"
+    "@redwoodjs/api": "^0.2.5",
+    "core-js-pure": "^3.6.4"
   }
 }
