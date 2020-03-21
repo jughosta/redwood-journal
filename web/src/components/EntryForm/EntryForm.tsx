@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import gql from 'graphql-tag'
 import { useMutation } from '@redwoodjs/web'
 import { Entry } from 'src/types'
+import { decryptMessage, encryptMessage } from 'src/utils/crypto'
 
 const CREATE_ENTRY = gql`
   mutation CreateEntryMutation($input: EntryInput!) {
@@ -29,9 +30,10 @@ const UPDATE_ENTRY = gql`
 
 type Props = {
   entry: Entry
+  autoFocus: boolean
 }
 
-const EntryForm = ({ entry: initialEntry }: Props): JSX.Element => {
+const EntryForm = ({ entry: initialEntry, autoFocus }: Props): JSX.Element => {
   const [entry, setEntry] = useState({ ...initialEntry })
   const [create, { loading: createLoading, error: createError }] = useMutation(
     CREATE_ENTRY
@@ -39,7 +41,7 @@ const EntryForm = ({ entry: initialEntry }: Props): JSX.Element => {
   const [update, { loading: updateLoading, error: updateError }] = useMutation(
     UPDATE_ENTRY,
     {
-      onCompleted: (data: Entry) => setEntry(data),
+      onCompleted: (data: { updateEntry: Entry }) => setEntry(data.updateEntry),
     }
   )
 
@@ -56,7 +58,7 @@ const EntryForm = ({ entry: initialEntry }: Props): JSX.Element => {
       question: entry.question,
       dayTime: entry.dayTime,
       day: entry.day,
-      answer,
+      answer: encryptMessage(answer),
     }
 
     if (entry.isDraft) {
@@ -77,6 +79,11 @@ const EntryForm = ({ entry: initialEntry }: Props): JSX.Element => {
 
   const inputId = `entry-form-${Math.random()}`
   const hasError = createError || updateError
+  let answer = ''
+
+  if (!entry.isDraft) {
+    answer = decryptMessage(entry.answer)
+  }
 
   return (
     <section className="bg-white px-3 py-2">
@@ -85,9 +92,10 @@ const EntryForm = ({ entry: initialEntry }: Props): JSX.Element => {
       </label>
       <textarea
         id={inputId}
+        autoFocus={autoFocus}
         name="answer"
         disabled={createLoading || updateLoading}
-        defaultValue={entry.answer}
+        defaultValue={answer}
         className="w-full py-1 px-2 border-gray-200 border-solid border-2 text-gray-800 outline-none focus:border-gray-300"
         onBlur={onBlur}
       />

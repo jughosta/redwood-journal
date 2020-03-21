@@ -43,12 +43,12 @@ export const Success = ({ entries }: Props): JSX.Element => {
     <>
       <EntryList
         readOnly={readOnly}
-        heading="Morning"
+        dayTime={DayTime.MORNING}
         entries={map[DayTime.MORNING]}
       />
       <EntryList
         readOnly={readOnly}
-        heading="Evening"
+        dayTime={DayTime.EVENING}
         entries={map[DayTime.EVENING]}
       />
     </>
