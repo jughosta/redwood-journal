@@ -43,5 +43,6 @@ If you've made changes to the schema run `yarn redwood db save` to generate a mi
 
 ## Screenshots
 
-[Locked screen](./screenshots/locked-page.png)
-[Unlocked screen](./screenshots/unlocked-page.png)
+![Locked screen](./screenshots/locked-page.png)
+
+![Unlocked screen](./screenshots/unlocked-page.png)
