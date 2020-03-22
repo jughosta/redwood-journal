@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { Form, TextField, HiddenField } from '@redwoodjs/web'
 import { setProvidedSecret } from 'src/utils/crypto'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
-import NavDayEntries from 'src/components/NavDayEntries/NavDayEntries'
-
-import DayEntriesCell from 'src/components/DayEntriesCell/DayEntriesCell'
+import DayEntriesNav from 'src/components/DayEntriesNav/DayEntriesNav'
+import DayEntries from 'src/components/DayEntries/DayEntries'
 
 type Props = {
   day: string
@@ -21,7 +20,7 @@ const DayEntriesPage = ({ day }: Props): JSX.Element => {
   }
 
   return (
-    <MainLayout nav={<NavDayEntries />}>
+    <MainLayout nav={<DayEntriesNav />}>
       {locked ? (
         <div className="my-24 text-center text-gray-700">
           The journal is locked, please enter your passphrase
@@ -36,7 +35,7 @@ const DayEntriesPage = ({ day }: Props): JSX.Element => {
           </Form>
         </div>
       ) : (
-        <DayEntriesCell day={day} />
+        <DayEntries day={day} />
       )}
     </MainLayout>
   )
