@@ -1,18 +1,9 @@
 import React, { useState } from 'react'
 import gql from 'graphql-tag'
 import { useMutation } from '@redwoodjs/web'
-import { Entry } from 'src/types'
 import { decryptMessage, encryptMessage } from 'src/utils/crypto'
-
-const ENTRY_FRAGMENT = gql`
-  fragment EntryFields on Entry {
-    id
-    question
-    answer
-    dayTime
-    day
-  }
-`
+import { ENTRY_FIELDS_FRAGMENT } from 'src/utils/gqlFragments'
+import { Entry } from 'src/types'
 
 const CREATE_ENTRY = gql`
   mutation CreateEntryMutation($input: EntryInput!) {
@@ -21,7 +12,7 @@ const CREATE_ENTRY = gql`
     }
   }
 
-  ${ENTRY_FRAGMENT}
+  ${ENTRY_FIELDS_FRAGMENT}
 `
 
 const UPDATE_ENTRY = gql`
@@ -30,7 +21,7 @@ const UPDATE_ENTRY = gql`
       ...EntryFields
     }
   }
-  ${ENTRY_FRAGMENT}
+  ${ENTRY_FIELDS_FRAGMENT}
 `
 
 type Props = {
@@ -64,6 +55,7 @@ const EntryForm = ({ entry: initialEntry, autoFocus }: Props): JSX.Element => {
       dayTime: entry.dayTime,
       day: entry.day,
       answer: encryptMessage(answer),
+      userId: 'TODO',
     }
 
     if (entry.isDraft) {

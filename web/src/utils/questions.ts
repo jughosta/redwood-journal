@@ -3,7 +3,7 @@ import { DayTime, EntriesMapByDayTime, Entry } from '../types'
 const QUESTION_LIST_MORNING = [
   'Top 3 goals for today',
   'One thing I am excited about today is...',
-  'How can I deal with stress best?',
+  'How to deal with a stressful situation?',
   'Someone who needs me today is...',
   'Someone to connect with today and why?',
   'A bold action I could take today is...',
@@ -21,6 +21,7 @@ const QuestionsMapByDayTime = {
 }
 
 const prepareEntriesByDayTime = (
+  userId: string,
   dayTime: DayTime,
   entries: Entry[],
   includeDrafts = false,
@@ -43,6 +44,7 @@ const prepareEntriesByDayTime = (
         dayTime: dayTime,
         day: draftDay,
         isDraft: true,
+        userId
       }
     })
     .filter(Boolean),
@@ -54,17 +56,20 @@ const prepareEntriesByDayTime = (
 ]
 
 export const groupEntriesByDayTime = (
+  userId: string,
   entries: Entry[],
   includeDrafts = false,
   draftDay?: string
 ): EntriesMapByDayTime => ({
   [DayTime.MORNING]: prepareEntriesByDayTime(
+    userId,
     DayTime.MORNING,
     entries,
     includeDrafts,
     draftDay
   ),
   [DayTime.EVENING]: prepareEntriesByDayTime(
+    userId,
     DayTime.EVENING,
     entries,
     includeDrafts,

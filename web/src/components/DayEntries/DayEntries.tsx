@@ -3,19 +3,17 @@ import gql from 'graphql-tag'
 import { useQuery } from '@redwoodjs/web'
 import { groupEntriesByDayTime } from 'src/utils/questions'
 import { getDayCode } from 'src/utils/date'
+import { ENTRY_FIELDS_FRAGMENT } from 'src/utils/gqlFragments'
 import EntryList from 'src/components/EntryList/EntryList'
 import { DayTime, Entry } from 'src/types'
 
 const QUERY = gql`
-  query getDayEntries($day: String!) {
-    entries: dayEntries(day: $day) {
-      id
-      question
-      answer
-      dayTime
-      day
+  query getDayEntries($userId: String!, $day: String!) {
+    entries(userId: $userId, day: $day) {
+      ...EntryFields
     }
   }
+  ${ENTRY_FIELDS_FRAGMENT}
 `
 
 export const Loading = (): JSX.Element => (
@@ -37,8 +35,9 @@ export const Success = ({
   day: string
   entries: Entry[]
 }): JSX.Element => {
+  const userId = 'TODO'
   const readOnly = getDayCode(new Date()) !== day // not today
-  const map = groupEntriesByDayTime(entries, !readOnly, day)
+  const map = groupEntriesByDayTime(userId, entries, !readOnly, day)
 
   if (entries.length === 0 && readOnly) {
     return <Empty />
@@ -68,6 +67,7 @@ const DayEntries = ({ day }: Props): JSX.Element => {
   const { data, loading, error } = useQuery(QUERY, {
     variables: {
       day,
+      userId: 'TODO',
     },
   })
 

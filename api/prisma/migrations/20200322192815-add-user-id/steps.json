@@ -1,0 +1,44 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Entry",
+      "field": "userId",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Entry",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[day, userId]"
+            }
+          ]
+        },
+        "directive": "index"
+      }
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Entry",
+          "arguments": [
+            {
+              "name": "",
+              "value": "[day]"
+            }
+          ]
+        },
+        "directive": "index"
+      }
+    }
+  ]
+}

@@ -9,6 +9,7 @@ export type Entry = {
   answer: string
   dayTime: DayTime
   day: string
+  userId: string
   isDraft?: boolean
 }
 
