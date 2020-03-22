@@ -8,7 +8,7 @@ const Header = (): JSX.Element => {
   return (
     <header className="text-center">
       <Link
-        to={routes.dayEntries({ day: getDayCode(now) })}
+        to={routes.entries({ day: getDayCode(now) })}
         className="font-semibold text-blue-700"
       >
         Redwood Journal

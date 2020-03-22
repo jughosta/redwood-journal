@@ -44,7 +44,7 @@ export const Success = ({
   }
 
   return (
-    <>
+    <section className="mt-4">
       <EntryList
         readOnly={readOnly}
         dayTime={DayTime.MORNING}
@@ -55,7 +55,7 @@ export const Success = ({
         dayTime={DayTime.EVENING}
         entries={map[DayTime.EVENING]}
       />
-    </>
+    </section>
   )
 }
 

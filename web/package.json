@@ -6,13 +6,18 @@
     "defaults"
   ],
   "dependencies": {
+    "@reach/dialog": "^0.9.1",
+    "@reach/tabs": "^0.9.1",
+    "@reach/visually-hidden": "^0.9.0",
     "@redwoodjs/router": "^0.2.5",
     "@redwoodjs/web": "^0.2.5",
     "crypto-js": "^4.0.0",
     "date-fns": "^2.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-netlify-identity": "^0.2.3",
+    "react-netlify-identity-widget": "^0.2.7"
   },
   "devDependencies": {
     "ts-jest": "^25.2.1"

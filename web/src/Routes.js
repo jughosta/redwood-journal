@@ -7,7 +7,7 @@ import NotFound404Page from 'src/pages/NotFoundPage/NotFound404Page'
 const Routes = () => {
   return (
     <Router>
-      <Route path="/entries/:day" page={DayEntriesPage} name="dayEntries" />
+      <Route path="/entries/:day" page={DayEntriesPage} name="entries" />
       <Route path="/" page={StartPage} name="home" />
       <Route notfound page={NotFound404Page} />
     </Router>

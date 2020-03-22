@@ -1,21 +1,33 @@
 import React from 'react'
+import { useIdentityContext } from 'react-netlify-identity'
 import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import { getDayCode } from 'src/utils/date'
 
-const StartPage = (): JSX.Element => {
+const WelcomeSection = () => {
+  const identity = useIdentityContext()
+  if (!identity.isLoggedIn) {
+    return null
+  }
+
   return (
-    <MainLayout>
-      <>
-        <h1 className="text-center font-bold">Welcome!</h1>
-        <div className="text-center text-blue-700">
-          <Link to={routes.dayEntries({ day: getDayCode(new Date()) })}>
-            Go to Today entries
-          </Link>
-        </div>
-      </>
-    </MainLayout>
+    <div className="my-48 text-center">
+      <div className="my-16">
+        <Link
+          className="text-white bg-blue-500 px-4 py-2"
+          to={routes.entries({ day: getDayCode(new Date()) })}
+        >
+          Open the journal
+        </Link>
+      </div>
+    </div>
   )
 }
+
+const StartPage = (): JSX.Element => (
+  <MainLayout>
+    <WelcomeSection />
+  </MainLayout>
+)
 
 export default StartPage

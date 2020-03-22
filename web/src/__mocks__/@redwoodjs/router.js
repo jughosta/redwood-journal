@@ -3,7 +3,7 @@ module.exports = {
     return null
   },
   routes: {
-    dayEntries: () => '/test-path',
+    entries: () => '/test-path',
   },
   useParams: () => {
     return {
