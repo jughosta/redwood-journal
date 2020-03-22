@@ -4,28 +4,33 @@ import { useMutation } from '@redwoodjs/web'
 import { Entry } from 'src/types'
 import { decryptMessage, encryptMessage } from 'src/utils/crypto'
 
+const ENTRY_FRAGMENT = gql`
+  fragment EntryFields on Entry {
+    id
+    question
+    answer
+    dayTime
+    day
+  }
+`
+
 const CREATE_ENTRY = gql`
   mutation CreateEntryMutation($input: EntryInput!) {
     createEntry(input: $input) {
-      id
-      question
-      answer
-      dayTime
-      day
+      ...EntryFields
     }
   }
+
+  ${ENTRY_FRAGMENT}
 `
 
 const UPDATE_ENTRY = gql`
   mutation UpdateEntryMutation($id: String!, $input: EntryInput!) {
     updateEntry(id: $id, input: $input) {
-      id
-      question
-      answer
-      dayTime
-      day
+      ...EntryFields
     }
   }
+  ${ENTRY_FRAGMENT}
 `
 
 type Props = {
