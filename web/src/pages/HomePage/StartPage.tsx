@@ -1,16 +1,10 @@
 import React from 'react'
-import { useIdentityContext } from 'react-netlify-identity'
 import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import { getDayCode } from 'src/utils/date'
 
-const WelcomeSection = () => {
-  const identity = useIdentityContext()
-  if (!identity.isLoggedIn) {
-    return null
-  }
-
-  return (
+const StartPage = (): JSX.Element => (
+  <MainLayout>
     <div className="my-48 text-center">
       <div className="my-16">
         <Link
@@ -21,12 +15,6 @@ const WelcomeSection = () => {
         </Link>
       </div>
     </div>
-  )
-}
-
-const StartPage = (): JSX.Element => (
-  <MainLayout>
-    <WelcomeSection />
   </MainLayout>
 )
 
