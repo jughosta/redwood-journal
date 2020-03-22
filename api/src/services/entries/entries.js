@@ -1,4 +1,4 @@
-export const dayEntries = ({ userId, day }) => {
+export const entries = ({ userId, day }) => {
   return db.entry.findMany({
     where: {
       userId,

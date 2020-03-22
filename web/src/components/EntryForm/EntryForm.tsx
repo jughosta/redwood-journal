@@ -32,7 +32,10 @@ type Props = {
 const EntryForm = ({ entry: initialEntry, autoFocus }: Props): JSX.Element => {
   const [entry, setEntry] = useState({ ...initialEntry })
   const [create, { loading: createLoading, error: createError }] = useMutation(
-    CREATE_ENTRY
+    CREATE_ENTRY,
+    {
+      onCompleted: (data: { createEntry: Entry }) => setEntry(data.createEntry),
+    }
   )
   const [update, { loading: updateLoading, error: updateError }] = useMutation(
     UPDATE_ENTRY,
