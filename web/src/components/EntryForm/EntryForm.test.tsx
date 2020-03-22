@@ -12,27 +12,15 @@ describe('Entry', () => {
     expect(() => {
       render(
         <EntryForm
+          userId="tttt"
           entry={{
             id: 'entry-1',
             question: 'How are you?',
             answer: 'Fine',
             dayTime: DayTime.MORNING,
             day: '2020-03-19',
+            userId: 'tttt',
           }}
-          question="How are you?"
-          dayTime={DayTime.MORNING}
-          day="2020-03-19"
-        />
-      )
-    }).not.toThrow()
-
-    expect(() => {
-      render(
-        <EntryForm
-          entry={null}
-          question="How are you?"
-          dayTime={DayTime.MORNING}
-          day="2020-03-19"
         />
       )
     }).not.toThrow()

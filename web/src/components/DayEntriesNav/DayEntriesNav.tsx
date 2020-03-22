@@ -8,14 +8,14 @@ import {
   hasNextDate,
 } from 'src/utils/date'
 
-const NavDayEntries = (): JSX.Element => {
+const DayEntriesNav = (): JSX.Element => {
   const { day } = useParams()
   const date = new Date(day)
 
   return (
-    <nav className="flex justify-between items-center">
+    <nav className="mb-4 flex justify-between items-center">
       <Link
-        to={routes.dayEntries({
+        to={routes.entries({
           day: getDayCode(getPreviousDate(date)),
         })}
         className="w-24 font-semibold text-sm text-blue-700"
@@ -26,7 +26,7 @@ const NavDayEntries = (): JSX.Element => {
       <div className="w-24 text-right">
         {hasNextDate(date) && (
           <Link
-            to={routes.dayEntries({
+            to={routes.entries({
               day: getDayCode(getNextDate(date)),
             })}
             className="font-semibold text-sm text-blue-700"
@@ -39,4 +39,4 @@ const NavDayEntries = (): JSX.Element => {
   )
 }
 
-export default NavDayEntries
+export default DayEntriesNav

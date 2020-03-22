@@ -1,56 +1,93 @@
 import React, { useState } from 'react'
 import gql from 'graphql-tag'
 import { useMutation } from '@redwoodjs/web'
-import { Entry } from 'src/types'
 import { decryptMessage, encryptMessage } from 'src/utils/crypto'
+import { ENTRY_FIELDS_FRAGMENT } from 'src/utils/gqlFragments'
+import { Entry } from 'src/types'
+import { generateDraftEntry } from 'src/utils/questions'
 
 const CREATE_ENTRY = gql`
   mutation CreateEntryMutation($input: EntryInput!) {
     createEntry(input: $input) {
-      id
-      question
-      answer
-      dayTime
-      day
+      ...EntryFields
     }
   }
+
+  ${ENTRY_FIELDS_FRAGMENT}
 `
 
 const UPDATE_ENTRY = gql`
   mutation UpdateEntryMutation($id: String!, $input: EntryInput!) {
     updateEntry(id: $id, input: $input) {
-      id
-      question
-      answer
-      dayTime
-      day
+      ...EntryFields
     }
   }
+  ${ENTRY_FIELDS_FRAGMENT}
+`
+
+const DELETE_ENTRY = gql`
+  mutation DeleteEntryMutation($id: String!) {
+    deleteEntry(id: $id) {
+      ...EntryFields
+    }
+  }
+  ${ENTRY_FIELDS_FRAGMENT}
 `
 
 type Props = {
+  userId: string
   entry: Entry
-  autoFocus: boolean
+  autoFocus?: boolean
 }
 
-const EntryForm = ({ entry: initialEntry, autoFocus }: Props): JSX.Element => {
+const EntryForm = ({
+  userId,
+  entry: initialEntry,
+  autoFocus,
+}: Props): JSX.Element => {
   const [entry, setEntry] = useState({ ...initialEntry })
   const [create, { loading: createLoading, error: createError }] = useMutation(
-    CREATE_ENTRY
+    CREATE_ENTRY,
+    {
+      onCompleted: (data) => setEntry(data.createEntry),
+    }
   )
   const [update, { loading: updateLoading, error: updateError }] = useMutation(
     UPDATE_ENTRY,
     {
-      onCompleted: (data: { updateEntry: Entry }) => setEntry(data.updateEntry),
+      onCompleted: (data) => setEntry(data.updateEntry),
     }
   )
+  const [
+    deleteEntry,
+    { loading: deleteLoading, error: deleteError },
+  ] = useMutation(DELETE_ENTRY, {
+    onCompleted: (data) => {
+      const deletedEntry = data.deleteEntry
+      setEntry(
+        generateDraftEntry(
+          deletedEntry.userId,
+          deletedEntry.day,
+          deletedEntry.dayTime,
+          deletedEntry.question
+        )
+      )
+    },
+  })
 
   const onBlur = (event): void => {
     const target = event.currentTarget
     const answer = target.value.trim()
 
-    if (entry.isDraft && !answer) {
+    if (!answer) {
       // skipped
+      if (!entry.isDraft) {
+        deleteEntry({
+          variables: {
+            id: entry.id,
+          },
+        })
+      }
       return
     }
 
@@ -59,6 +96,7 @@ const EntryForm = ({ entry: initialEntry, autoFocus }: Props): JSX.Element => {
       dayTime: entry.dayTime,
       day: entry.day,
       answer: encryptMessage(answer),
+      userId,
     }
 
     if (entry.isDraft) {
@@ -78,7 +116,7 @@ const EntryForm = ({ entry: initialEntry, autoFocus }: Props): JSX.Element => {
   }
 
   const inputId = `entry-form-${Math.random()}`
-  const hasError = createError || updateError
+  const hasError = createError || updateError || deleteError
   let answer = ''
 
   if (!entry.isDraft) {
@@ -94,7 +132,7 @@ const EntryForm = ({ entry: initialEntry, autoFocus }: Props): JSX.Element => {
         id={inputId}
         autoFocus={autoFocus}
         name="answer"
-        disabled={createLoading || updateLoading}
+        disabled={createLoading || updateLoading || deleteLoading}
         defaultValue={answer}
         className="w-full py-1 px-2 border-gray-200 border-solid border-2 text-gray-800 outline-none focus:border-gray-300"
         onBlur={onBlur}

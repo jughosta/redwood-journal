@@ -1,6 +1,6 @@
 datasource DS {
-  provider = "postgresql"
-  url = env("DATABASE_URL")
+  provider = "sqlite"
+  url = "***"
 }
 
 generator photonjs {

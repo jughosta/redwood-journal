@@ -1,19 +1,15 @@
 import React from 'react'
 import { render, cleanup } from '@testing-library/react'
 
-import MainLayout from './MainLayout'
+import DayEntriesNav from './DayEntriesNav'
 
-describe('MainLayout', () => {
+describe('NavDayEntries', () => {
   afterEach(() => {
     cleanup()
   })
   it('renders successfully', () => {
     expect(() => {
-      render(
-        <MainLayout>
-          <span>Test</span>
-        </MainLayout>
-      )
+      render(<DayEntriesNav />)
     }).not.toThrow()
   })
 })

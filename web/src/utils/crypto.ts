@@ -5,8 +5,6 @@ let secret = null
 const INCORRECT_PASSPHRASE = '<incorrect passphrase>'
 const COULD_NOT_DECRYPT = '<decryption failed>'
 
-export const isSecretProvided = (): boolean => Boolean(secret)
-
 export const setProvidedSecret = (providedSecret: string): void => {
   secret = providedSecret
 }

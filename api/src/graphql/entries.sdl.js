@@ -10,11 +10,11 @@ export const schema = gql`
     answer: String!
     dayTime: DayTime!
     day: String!
+    userId: String!
   }
 
   type Query {
-    entries: [Entry!]!
-    dayEntries(day: String!): [Entry!]!
+    entries(userId: String!, day: String!): [Entry!]!
     entry(id: String!): Entry
   }
 
@@ -23,6 +23,7 @@ export const schema = gql`
     answer: String!
     dayTime: DayTime!
     day: String!
+    userId: String!
   }
 
   type Mutation {
