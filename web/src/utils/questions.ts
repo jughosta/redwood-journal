@@ -1,27 +1,18 @@
 import { DayTime, EntriesMapByDayTime, Entry } from '../types'
 
 const QUESTION_LIST_MORNING = [
-  "Today's message to myself",
+  'Top 3 goals for today',
   'One thing I am excited about today is...',
-  'What person I want to be today and why?',
-  'Someone who needs my best performance today?',
-  'A situation that can stress me out today could be...',
   'How can I deal with stress best?',
-  'Someone to thank today or to show a sign of appreciation?',
+  'Someone who needs me today is...',
   'Someone to connect with today and why?',
   'A bold action I could take today is...',
-  'How can I demonstrate excellence or real value?',
-  'Definition of success for today is...',
-  'Top 3 goals for today',
 ]
 
 const QUESTION_LIST_EVENING = [
   'I am grateful for...',
-  'I achieved...',
-  'I handled well...',
-  'I realized today...',
-  'I learnt today...',
-  'I felt more connected with...',
+  'I achieved or handled well...',
+  'I realized or learnt today...',
 ]
 
 const QuestionsMapByDayTime = {
