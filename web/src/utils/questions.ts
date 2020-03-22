@@ -20,6 +20,21 @@ const QuestionsMapByDayTime = {
   [DayTime.EVENING]: QUESTION_LIST_EVENING,
 }
 
+export const generateDraftEntry = (
+  userId: string,
+  day: string,
+  dayTime: DayTime,
+  question: string
+) => ({
+  id: `draft-entry-${Math.random()}`,
+  question,
+  answer: '',
+  dayTime,
+  day,
+  isDraft: true,
+  userId,
+})
+
 const prepareEntriesByDayTime = (
   userId: string,
   dayTime: DayTime,
@@ -37,15 +52,7 @@ const prepareEntriesByDayTime = (
         return null
       }
 
-      return {
-        id: `draft-entry-${Math.random()}`,
-        question: q,
-        answer: '',
-        dayTime: dayTime,
-        day: draftDay,
-        isDraft: true,
-        userId
-      }
+      return generateDraftEntry(userId, draftDay, dayTime, q)
     })
     .filter(Boolean),
   ...entries.filter(

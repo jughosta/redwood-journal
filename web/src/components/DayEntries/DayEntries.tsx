@@ -31,11 +31,12 @@ export const Empty = (): JSX.Element => (
 export const Success = ({
   day,
   entries,
+  userId,
 }: {
   day: string
   entries: Entry[]
+  userId: string
 }): JSX.Element => {
-  const userId = 'TODO'
   const readOnly = getDayCode(new Date()) !== day // not today
   const map = groupEntriesByDayTime(userId, entries, !readOnly, day)
 
@@ -46,11 +47,13 @@ export const Success = ({
   return (
     <section className="mt-4">
       <EntryList
+        userId={userId}
         readOnly={readOnly}
         dayTime={DayTime.MORNING}
         entries={map[DayTime.MORNING]}
       />
       <EntryList
+        userId={userId}
         readOnly={readOnly}
         dayTime={DayTime.EVENING}
         entries={map[DayTime.EVENING]}
@@ -61,13 +64,14 @@ export const Success = ({
 
 type Props = {
   day: string
+  userId: string
 }
 
-const DayEntries = ({ day }: Props): JSX.Element => {
+const DayEntries = ({ day, userId }: Props): JSX.Element => {
   const { data, loading, error } = useQuery(QUERY, {
     variables: {
       day,
-      userId: 'TODO',
+      userId,
     },
   })
 
@@ -79,7 +83,7 @@ const DayEntries = ({ day }: Props): JSX.Element => {
     return <Failure />
   }
 
-  return <Success entries={data.entries} day={day} />
+  return <Success entries={data.entries} day={day} userId={userId} />
 }
 
 export default DayEntries

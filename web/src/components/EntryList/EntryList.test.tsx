@@ -12,6 +12,7 @@ describe('Entry', () => {
     expect(() => {
       render(
         <EntryList
+          userId="tttt"
           readOnly
           dayTime={DayTime.MORNING}
           entries={[
@@ -21,6 +22,7 @@ describe('Entry', () => {
               answer: 'Fine',
               dayTime: DayTime.MORNING,
               day: '2020-03-19',
+              userId: 'tttt',
             },
             {
               id: 'entry-2',
@@ -29,6 +31,7 @@ describe('Entry', () => {
               dayTime: DayTime.MORNING,
               day: '2020-03-19',
               isDraft: true,
+              userId: 'tttt',
             },
           ]}
         />
@@ -40,6 +43,7 @@ describe('Entry', () => {
     expect(() => {
       render(
         <EntryList
+          userId="tttt"
           readOnly={false}
           dayTime={DayTime.MORNING}
           entries={[
@@ -49,6 +53,7 @@ describe('Entry', () => {
               answer: 'Fine',
               dayTime: DayTime.MORNING,
               day: '2020-03-19',
+              userId: 'tttt',
             },
             {
               id: 'entry-2',
@@ -57,6 +62,7 @@ describe('Entry', () => {
               dayTime: DayTime.MORNING,
               day: '2020-03-19',
               isDraft: true,
+              userId: 'tttt',
             },
           ]}
         />
