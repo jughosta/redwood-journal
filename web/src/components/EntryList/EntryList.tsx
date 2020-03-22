@@ -4,12 +4,18 @@ import Entry from 'src/components/Entry/Entry'
 import EntryForm from 'src/components/EntryForm/EntryForm'
 
 type Props = {
+  userId: string
   entries: EntryType[]
   dayTime: DayTime
   readOnly: boolean
 }
 
-const EntryList = ({ entries, dayTime, readOnly }: Props): JSX.Element => {
+const EntryList = ({
+  userId,
+  entries,
+  dayTime,
+  readOnly,
+}: Props): JSX.Element => {
   if (entries.length === 0) {
     return null
   }
@@ -26,6 +32,7 @@ const EntryList = ({ entries, dayTime, readOnly }: Props): JSX.Element => {
               <Entry entry={entry} />
             ) : (
               <EntryForm
+                userId={userId}
                 entry={entry}
                 autoFocus={dayTime === DayTime.MORNING && index === 0}
               />

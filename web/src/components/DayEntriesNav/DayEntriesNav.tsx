@@ -13,9 +13,9 @@ const DayEntriesNav = (): JSX.Element => {
   const date = new Date(day)
 
   return (
-    <nav className="flex justify-between items-center">
+    <nav className="mb-4 flex justify-between items-center">
       <Link
-        to={routes.dayEntries({
+        to={routes.entries({
           day: getDayCode(getPreviousDate(date)),
         })}
         className="w-24 font-semibold text-sm text-blue-700"
@@ -26,7 +26,7 @@ const DayEntriesNav = (): JSX.Element => {
       <div className="w-24 text-right">
         {hasNextDate(date) && (
           <Link
-            to={routes.dayEntries({
+            to={routes.entries({
               day: getDayCode(getNextDate(date)),
             })}
             className="font-semibold text-sm text-blue-700"

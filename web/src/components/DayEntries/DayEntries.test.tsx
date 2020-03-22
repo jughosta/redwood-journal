@@ -26,6 +26,7 @@ describe('DayEntriesCell', () => {
   it('Success renders successfully', () => {
     expect(() => {
       Success({
+        userId: 'tttt',
         day: '2020-03-22',
         entries: [
           {
@@ -34,6 +35,7 @@ describe('DayEntriesCell', () => {
             answer: 'Fine',
             dayTime: DayTime.MORNING,
             day: '2020-03-22',
+            userId: 'tttt',
           },
         ],
       })

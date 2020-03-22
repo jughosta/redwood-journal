@@ -3,19 +3,17 @@ import gql from 'graphql-tag'
 import { useQuery } from '@redwoodjs/web'
 import { groupEntriesByDayTime } from 'src/utils/questions'
 import { getDayCode } from 'src/utils/date'
+import { ENTRY_FIELDS_FRAGMENT } from 'src/utils/gqlFragments'
 import EntryList from 'src/components/EntryList/EntryList'
 import { DayTime, Entry } from 'src/types'
 
 const QUERY = gql`
-  query getDayEntries($day: String!) {
-    entries: dayEntries(day: $day) {
-      id
-      question
-      answer
-      dayTime
-      day
+  query getDayEntries($userId: String!, $day: String!) {
+    entries(userId: $userId, day: $day) {
+      ...EntryFields
     }
   }
+  ${ENTRY_FIELDS_FRAGMENT}
 `
 
 export const Loading = (): JSX.Element => (
@@ -33,41 +31,47 @@ export const Empty = (): JSX.Element => (
 export const Success = ({
   day,
   entries,
+  userId,
 }: {
   day: string
   entries: Entry[]
+  userId: string
 }): JSX.Element => {
   const readOnly = getDayCode(new Date()) !== day // not today
-  const map = groupEntriesByDayTime(entries, !readOnly, day)
+  const map = groupEntriesByDayTime(userId, entries, !readOnly, day)
 
   if (entries.length === 0 && readOnly) {
     return <Empty />
   }
 
   return (
-    <>
+    <section className="mt-4">
       <EntryList
+        userId={userId}
         readOnly={readOnly}
         dayTime={DayTime.MORNING}
         entries={map[DayTime.MORNING]}
       />
       <EntryList
+        userId={userId}
         readOnly={readOnly}
         dayTime={DayTime.EVENING}
         entries={map[DayTime.EVENING]}
       />
-    </>
+    </section>
   )
 }
 
 type Props = {
   day: string
+  userId: string
 }
 
-const DayEntries = ({ day }: Props): JSX.Element => {
+const DayEntries = ({ day, userId }: Props): JSX.Element => {
   const { data, loading, error } = useQuery(QUERY, {
     variables: {
       day,
+      userId,
     },
   })
 
@@ -79,7 +83,7 @@ const DayEntries = ({ day }: Props): JSX.Element => {
     return <Failure />
   }
 
-  return <Success entries={data.entries} day={day} />
+  return <Success entries={data.entries} day={day} userId={userId} />
 }
 
 export default DayEntries

@@ -1,27 +1,18 @@
 import { DayTime, EntriesMapByDayTime, Entry } from '../types'
 
 const QUESTION_LIST_MORNING = [
-  "Today's message to myself",
+  'Top 3 goals for today',
   'One thing I am excited about today is...',
-  'What person I want to be today and why?',
-  'Someone who needs my best performance today?',
-  'A situation that can stress me out today could be...',
-  'How can I deal with stress best?',
-  'Someone to thank today or to show a sign of appreciation?',
+  'How to deal with a stressful situation?',
+  'Someone who needs me today is...',
   'Someone to connect with today and why?',
   'A bold action I could take today is...',
-  'How can I demonstrate excellence or real value?',
-  'Definition of success for today is...',
-  'Top 3 goals for today',
 ]
 
 const QUESTION_LIST_EVENING = [
   'I am grateful for...',
-  'I achieved...',
-  'I handled well...',
-  'I realized today...',
-  'I learnt today...',
-  'I felt more connected with...',
+  'I achieved or handled well...',
+  'I realized or learnt today...',
 ]
 
 const QuestionsMapByDayTime = {
@@ -29,7 +20,23 @@ const QuestionsMapByDayTime = {
   [DayTime.EVENING]: QUESTION_LIST_EVENING,
 }
 
+export const generateDraftEntry = (
+  userId: string,
+  day: string,
+  dayTime: DayTime,
+  question: string
+) => ({
+  id: `draft-entry-${Math.random()}`,
+  question,
+  answer: '',
+  dayTime,
+  day,
+  isDraft: true,
+  userId,
+})
+
 const prepareEntriesByDayTime = (
+  userId: string,
   dayTime: DayTime,
   entries: Entry[],
   includeDrafts = false,
@@ -45,14 +52,7 @@ const prepareEntriesByDayTime = (
         return null
       }
 
-      return {
-        id: `draft-entry-${Math.random()}`,
-        question: q,
-        answer: '',
-        dayTime: dayTime,
-        day: draftDay,
-        isDraft: true,
-      }
+      return generateDraftEntry(userId, draftDay, dayTime, q)
     })
     .filter(Boolean),
   ...entries.filter(
@@ -63,17 +63,20 @@ const prepareEntriesByDayTime = (
 ]
 
 export const groupEntriesByDayTime = (
+  userId: string,
   entries: Entry[],
   includeDrafts = false,
   draftDay?: string
 ): EntriesMapByDayTime => ({
   [DayTime.MORNING]: prepareEntriesByDayTime(
+    userId,
     DayTime.MORNING,
     entries,
     includeDrafts,
     draftDay
   ),
   [DayTime.EVENING]: prepareEntriesByDayTime(
+    userId,
     DayTime.EVENING,
     entries,
     includeDrafts,
