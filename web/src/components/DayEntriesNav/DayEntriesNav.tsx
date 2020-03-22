@@ -8,7 +8,7 @@ import {
   hasNextDate,
 } from 'src/utils/date'
 
-const NavDayEntries = (): JSX.Element => {
+const DayEntriesNav = (): JSX.Element => {
   const { day } = useParams()
   const date = new Date(day)
 
@@ -39,4 +39,4 @@ const NavDayEntries = (): JSX.Element => {
   )
 }
 
-export default NavDayEntries
+export default DayEntriesNav

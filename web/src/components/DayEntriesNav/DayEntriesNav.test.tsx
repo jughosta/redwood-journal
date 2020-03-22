@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, cleanup } from '@testing-library/react'
 
-import NavDayEntries from './NavDayEntries'
+import DayEntriesNav from './DayEntriesNav'
 
 describe('NavDayEntries', () => {
   afterEach(() => {
@@ -9,7 +9,7 @@ describe('NavDayEntries', () => {
   })
   it('renders successfully', () => {
     expect(() => {
-      render(<NavDayEntries />)
+      render(<DayEntriesNav />)
     }).not.toThrow()
   })
 })
