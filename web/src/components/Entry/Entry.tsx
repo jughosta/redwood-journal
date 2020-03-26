@@ -10,7 +10,9 @@ const Entry = ({ entry }: Props): JSX.Element => {
   return (
     <section className="bg-white px-3 py-2">
       <div className="text-gray-800 font-semibold">{entry.question}</div>
-      <div className="text-gray-800">{decryptMessage(entry.answer)}</div>
+      <div className="text-gray-800 whitespace-pre">
+        {decryptMessage(entry.answer)}
+      </div>
     </section>
   )
 }

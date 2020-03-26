@@ -41,6 +41,15 @@ This will read the schema definition in `api/prisma/schema.prisma` and generate 
 
 If you've made changes to the schema run `yarn redwood db save` to generate a migration, and `yarn redwood db up` to apply the migration/ generate a new ORM client.
 
+## Netlify Identity
+
+Netlify Identity is used to support multi user access.
+
+*NB:* The current implementation is not secure! At the moment the client sends `userId` to GraphQL directly
+although the identity data should be retrieved from `context.clientContext` in Netlify functions and permissions check should be added to GraphQL resolvers.
+
+https://docs.netlify.com/functions/functions-and-identity/#access-identity-info-via-clientcontext
+
 ## Screenshots
 
 ![Locked screen](./screenshots/locked-page.png)
